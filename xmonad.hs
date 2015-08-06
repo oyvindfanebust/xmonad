@@ -25,7 +25,7 @@ main = do
             myManageHook <+>
             manageDocks <+>
             manageHook defaultConfig
-        , logHook     = dynamicLogWithPP xmobarPP
+        , logHook      = dynamicLogWithPP xmobarPP
             { ppOutput = hPutStrLn xmproc
             , ppTitle  = xmobarColor "green" "" . shorten 50
             }
@@ -100,10 +100,10 @@ myManageHook = composeAll . concat $
         myDoFullFloat = doF W.focusDown <+> doFullFloat
 
 myKeys = flip EZ.mkKeymap [
-      ("M-p", spawn dmenu)
+      ("M-p",   spawn "exe=`dmenu_run` && eval \"exec $exe\"")
     , ("S-M-p", spawn "/opt/bin/launchbox.py")
     , ("S-M-n", spawn "nautilus --no-desktop --browser")
-    , ("S-M-s", spawn "gnome-control-center")
+    , ("S-M-s", spawn "unity-control-center")
     , ("S-M-q", spawn "gnome-session-quit")
     , ("<XF86AudioMute>"
         , spawn "amixer -q -D pulse sset Master toggle")
@@ -134,12 +134,12 @@ myKeys = flip EZ.mkKeymap [
 startup :: X ()
 startup = do
     user <- liftIO $ getEnv "USER"
-    spawn $ unwords -- restart trayer on M-q
-        [ "killall -u " ++ user ++ " trayer;"
-        , "exec trayer --edge top --align right --SetDockType true"
-        , "--SetPartialStrut true --expand true --width 15 --transparent true"
-        , "--tint 0x000000 --height 20 --distancefrom right --distance 750"
-        ]
+--    spawn $ unwords -- restart trayer on M-q
+--        [ "killall -u " ++ user ++ " trayer;"
+--        , "exec trayer --edge top --align right --SetDockType true"
+--        , "--SetPartialStrut true --expand true --width 15 --transparent true"
+--        , "--tint 0x000000 --height 20 --distancefrom right --distance 750"
+--        ]
     --spawn "xsetroot -solid #888888"
     --spawn "xloadimage -onroot -fullscreen <path.to.image>"
     return ()
