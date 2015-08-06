@@ -104,7 +104,15 @@ myKeys = flip EZ.mkKeymap [
     , ("S-M-p", spawn "/opt/bin/launchbox.py")
     , ("S-M-n", spawn "nautilus --no-desktop --browser")
     , ("S-M-s", spawn "unity-control-center")
-    , ("S-M-q", spawn "gnome-session-quit")
+    , ("S-M-q", spawn "sudo service lightdm restart")
+
+    , ("M-q",   spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi")
+    -- Lock Screen
+    , ("M-S-l",    spawn "gnome-screensaver-command -l")
+    -- Logout
+    --, ("M1-M-S-l", spawn "gnome-session-save --gui --kill")
+
+
     , ("<XF86AudioMute>"
         , spawn "amixer -q -D pulse sset Master toggle")
     , ("<XF86AudioRaiseVolume>"
