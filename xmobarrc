@@ -3,9 +3,11 @@ Config
     , bgColor = "black"
     , fgColor = "grey"
     , position = TopSize L 100 20
+    , lowerOnStart = False
     , commands =
         [ Run Kbd [("no", "NO"), ("us", "US")]
         , Run DynNetwork ["-L","0","-H","32","--normal","green","--high","red"] 10
+        , Run CommandReader "~/.pymodoro/pymodoro.py" "pomodoro"
         , Run Cpu ["-L","3","-H","50" , "--normal","green","--high","red"] 10
         , Run Memory ["-t","Mem: <usedratio>%"] 10
         , Run Swap [] 10
@@ -15,7 +17,7 @@ Config
         ]
     , sepChar = "%"
     , alignSep = "}{"
-    , template = "%StdinReader% }{ <action=gnome-system-monitor>%cpu%  |  %memory%</action>  |  <action=gnome-control-center network>%dynnetwork%</action>  |  <action=gnome-power-statistics>%battery%</action>    <fc=#ee9a00>%date%</fc>"
+    , template = "%StdinReader%}{ %pomodoro%  |  <action=gnome-system-monitor>%cpu%  |  %memory%</action>  |  <action=gnome-control-center network>%dynnetwork%</action>  |  <action=gnome-power-statistics>%battery%</action>    <fc=#ee9a00>%date%</fc>"
     }
 
 -- font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"

@@ -137,6 +137,8 @@ myKeys = flip EZ.mkKeymap [
     , ("<Print>", scrot "")
     , ("S-<Print>", scrot "-s")
     , ("C-<Print>", scrot "-u")
+
+    , ("M-n", spawn "touch ~/.pomodoro_session")
     ]
 
 startup :: X ()
